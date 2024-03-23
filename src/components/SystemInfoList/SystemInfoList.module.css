@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 100%;
+}
+.titleWrapper {
+  margin-top: 20px;
+  text-align: center;
+  background-color: rgba(11, 180, 180, 0.264);
+  position: relative;
+}
+.titleWrapper::before {
+  content: '';
+  border: 1px solid rgba(128, 128, 128, 0.615);
+  width: 100%;
+  top: -5px;
+  left: 0;
+  position: absolute;
+}
+.titleWrapper button {
+  color: rgb(35, 74, 153);
+  font-size: 20px;
+  padding: 5px 10px;
+  background-color: transparent;
+  position: relative;
+}
+.opened::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  background: transparent url('../../assets/images/arrow-up.svg') no-repeat;
+  display: block;
+}
+.closed::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  background: transparent url('../../assets/images/dropdown-arrow.svg')
+    no-repeat;
+  display: block;
+}

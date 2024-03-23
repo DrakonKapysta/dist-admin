@@ -1,0 +1,9 @@
+.param {
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.value {
+  color: rgb(44, 86, 203);
+  font-size: 18px;
+}
