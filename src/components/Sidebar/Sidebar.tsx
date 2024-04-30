@@ -14,8 +14,8 @@ const Sidebar = () => {
       <Link className={cl.sidebar__button} to={'#'}>
         <ReactStatIcon className={cl.svgImage} /> <span>Statisic</span>
       </Link>
-      <Link className={cl.sidebar__button} to={'#'}>
-        <ReactStatIcon className={cl.svgImage} /> <span>Dashboard</span>
+      <Link className={cl.sidebar__button} to={'logs'}>
+        <ReactStatIcon className={cl.svgImage} /> <span>Logs</span>
       </Link>
     </div>
   );

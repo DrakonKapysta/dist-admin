@@ -3,7 +3,7 @@ import { socketStore } from '../../stores/socketStore';
 import cl from './ConnectionsPage.module.css';
 
 const Connections = () => {
-  const clientConnections = socketStore((state) => state.connctions);
+  const clientConnections = socketStore((state) => state.connections);
   return (
     <div className={cl.wrapper}>
       <ConnectionList connections={clientConnections} />

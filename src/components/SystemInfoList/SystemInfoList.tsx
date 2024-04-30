@@ -18,7 +18,7 @@ const SystemInfoList = ({ title, objectList }: any) => {
         </button>
       </div>
       {isOpen &&
-        Object.entries(objectList).map(([key, value]) => (
+        Object.entries(objectList || []).map(([key, value]) => (
           <SystemInfoItem
             key={key + '_' + value}
             paramName={key}

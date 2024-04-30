@@ -1,0 +1,29 @@
+.deleteSelect {
+  border: 1px solid #000;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+.confirmButton {
+  border: 1px solid rgb(35, 74, 153);
+  color: rgb(35, 74, 153);
+  background-color: rgba(7, 188, 188, 0.105);
+  padding: 4px 8px;
+  font-size: 18px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.inputField {
+  border: 1px solid rgb(35, 74, 153);
+  color: rgb(35, 74, 153);
+  background-color: rgba(7, 188, 188, 0.105);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.rangeSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+}
