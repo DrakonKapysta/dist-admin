@@ -2,5 +2,55 @@
   overflow-y: auto;
   height: 100vh;
   width: 100%;
-  border: 1px solid #000;
+}
+.formsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.logsContainer {
+  position: relative;
+}
+.logsContainer::before {
+  content: '';
+  height: 1px;
+  border: 1px solid #908e8e;
+  width: 100%;
+  position: absolute;
+  top: -4px;
+  left: 0px;
+}
+.logFindInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.logFindInput {
+  border: 1px solid rgb(35, 74, 153);
+  color: rgb(35, 74, 153);
+  background-color: rgba(7, 188, 188, 0.105);
+  max-width: 200px;
+  padding: 5px 3px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.logFindLabel {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(97, 132, 203);
+}
+.deleteFormOpenButton {
+  border: 1px solid rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 0, 0, 0.668);
+  padding: 3px 8px;
+  font-size: 16px;
+  border-radius: 6px;
+  box-shadow: 1px 2px 6px 2px rgba(0, 0, 0, 0.219);
+  margin: 10px 0px;
+}
+.deleteFormOpenButton:hover {
+  border-color: rgba(255, 0, 0, 0.467);
+  background-color: rgba(255, 0, 0, 0.479);
 }

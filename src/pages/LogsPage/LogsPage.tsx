@@ -7,6 +7,7 @@ import LogForm from '../../components/LogForm/LogForm';
 
 const LogsPage = () => {
   const [logs, setLogs] = useState<any>([]);
+  const [searchLog, setSearchLog] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [fetchLogs, isLogsLoading, logsError] = useFetcthing(async () => {
     const logs = await LogService.getAll();
@@ -35,25 +36,59 @@ const LogsPage = () => {
     },
   );
   const loading = isLogsRemoving || isLogsLoading;
+  const searchedLogs = logs.filter((log: any) =>
+    log.log.toLowerCase().includes(searchLog.toLowerCase()),
+  );
+  console.log(searchedLogs);
 
   useEffect(() => {
     fetchLogs();
   }, []);
   return (
     <div className={cl.wrapper}>
-      <button onClick={() => setIsDeleting(!isDeleting)}>Delete log</button>
+      <button
+        className={cl.deleteFormOpenButton}
+        onClick={() => setIsDeleting(!isDeleting)}
+      >
+        Delete log
+      </button>
+      <div className={cl.formsContainer}>
+        <div className={cl.logFindInputContainer}>
+          <label className={cl.logFindLabel} htmlFor="logFindInput">
+            Enter log to find
+          </label>
+          <input
+            className={cl.logFindInput}
+            placeholder="Finding logs..."
+            name="logFindInput"
+            type="text"
+            value={searchLog}
+            onChange={(e) => setSearchLog(e.target.value)}
+          />
+        </div>
+        {isDeleting && <LogForm removeLog={removeLog} />}
+        {logsError && (
+          <p style={{ color: 'red' }}>Error loading logs {logsError}</p>
+        )}
+        {logsRemoveError && (
+          <p style={{ color: 'red' }}>Error removing logs {logsRemoveError}</p>
+        )}
+      </div>
 
-      {isDeleting && <LogForm removeLog={removeLog} />}
-      {logsError && <h1>Error loading logs {logsError}</h1>}
-      {logsRemoveError && <h1>Error removing logs {logsRemoveError}</h1>}
       {loading ? (
         <div>Loading logs...</div>
       ) : (
-        logs.map((log: any) => (
-          <p>
-            Date: {log.date} <br /> Log: {log.log}
-          </p>
-        ))
+        <div className={cl.logsContainer}>
+          {Boolean(searchedLogs.length) ? (
+            searchedLogs.map((log: any) => (
+              <p>
+                Date: {log.date} <br /> Log: {log.log}
+              </p>
+            ))
+          ) : (
+            <p>There are no logs found...</p>
+          )}
+        </div>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import cl from './Sidebar.module.css';
-import ReactStatIcon from '../../assets/images/statistic.svg?react';
+import ReactStatIcon from '../../assets/images/statisticIcon.svg?react';
+import ReactConnectionIcon from '../../assets/images/connectionIcon.svg?react';
+import ReactLogsIcon from '../../assets/images/logsIcon.svg?react';
 
 const Sidebar = () => {
   return (
@@ -9,13 +11,13 @@ const Sidebar = () => {
         <Link to={'/'}>Home</Link>
       </div>
       <Link className={cl.sidebar__button} to={'connections'}>
-        <ReactStatIcon className={cl.svgImage} /> <span>Connections</span>
+        <ReactConnectionIcon className={cl.svgImage} /> <span>Connections</span>
       </Link>
       <Link className={cl.sidebar__button} to={'#'}>
-        <ReactStatIcon className={cl.svgImage} /> <span>Statisic</span>
+        <ReactStatIcon className={cl.svgImage} /> <span>Statistic</span>
       </Link>
       <Link className={cl.sidebar__button} to={'logs'}>
-        <ReactStatIcon className={cl.svgImage} /> <span>Logs</span>
+        <ReactLogsIcon className={cl.svgImage} /> <span>Logs</span>
       </Link>
     </div>
   );

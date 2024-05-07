@@ -27,8 +27,10 @@ const LogForm: FC<LogFormProps> = ({ removeLog }) => {
     removeLog(formData, selectedDeleteVariant);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="deleteVariant">Choose delete variant </label>
+    <form className={cl.deleteForm} onSubmit={handleSubmit}>
+      <label className={cl.deleteVariantLabel} htmlFor="deleteVariant">
+        Choose delete variant{' '}
+      </label>
       <select
         className={cl.deleteSelect}
         name="deleteVariant"

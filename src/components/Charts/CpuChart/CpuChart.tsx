@@ -32,7 +32,7 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
       console.log(usage);
 
       setUsage((prev): any => {
-        if (prev.length == 11) {
+        if (prev.length == 10) {
           return [...prev.slice(1), usage.currentLoad];
         }
         return [...prev, usage.currentLoad];
@@ -45,7 +45,7 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
   return (
     <Line
       data={{
-        labels: ['t', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, null],
+        labels: ['t', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         datasets: [
           {
             label: 'CPU Usage',
@@ -80,6 +80,13 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
                 });
                 return title.trim();
               },
+            },
+          },
+          legend: {
+            labels: {
+              usePointStyle: true,
+              boxWidth: 11,
+              boxHeight: 11,
             },
           },
         },

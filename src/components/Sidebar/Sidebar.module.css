@@ -33,7 +33,8 @@ a {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .svgImage {
+  max-width: 25px;
+  max-height: 25px;
   position: relative;
   top: -2px;
-  fill: rgba(14, 53, 79, 0.6);
 }

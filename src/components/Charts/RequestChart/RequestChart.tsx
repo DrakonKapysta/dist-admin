@@ -63,6 +63,11 @@ const RequestChart = ({ requests }: any) => {
                 },
               },
             },
+            legend: {
+              labels: {
+                boxWidth: 0,
+              },
+            },
           },
         }}
       />
