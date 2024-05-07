@@ -10,9 +10,20 @@
   display: flex;
   align-items: center;
   word-break: break-all;
+  justify-content: space-between;
 }
 .wrapper:hover {
   border: 2px solid rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+.svgImage {
+  position: relative;
+  fill: rgba(14, 53, 79, 0.6);
+  max-width: 22px;
+  max-height: 22px;
+  border-left: 2px;
+  border-style: solid;
+  border-color: grey;
+  padding-left: 4px;
 }

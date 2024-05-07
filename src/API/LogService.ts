@@ -7,9 +7,9 @@ export default class LogService {
     }
     return [];
   }
-  static async deleteLog(type: string, date: string, time: string) {
+  static async deleteLog(type: string, date: Date) {
     const response = await fetch(
-      `http://localhost:3000/logs/remove?date=${date}&time=${time}&type=${type}`,
+      `http://localhost:3000/logs/remove?date=${date}&type=${type}`,
       {
         method: 'DELETE',
       },
@@ -19,15 +19,9 @@ export default class LogService {
       return deletedLog;
     }
   }
-  static async deleteManyLogs(
-    type: string,
-    date: string,
-    time: string,
-    endDate: string,
-    endTime: string,
-  ) {
+  static async deleteManyLogs(type: string, date: string, endDate: string) {
     const response = await fetch(
-      `http://localhost:3000/logs/remove?date=${date}&time=${time}&type=${type}&endDate=${endDate}&endTime=${endTime}`,
+      `http://localhost:3000/logs/remove?date=${date}&type=${type}&endDate=${endDate}`,
       {
         method: 'DELETE',
       },

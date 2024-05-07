@@ -3,33 +3,17 @@ import cl from './ConnectionIdPage.module.css';
 import { useParams } from 'react-router-dom';
 import { ConnectionType, socketStore } from '../../stores/socketStore';
 import SystemInfoList from '../../components/SystemInfoList/SystemInfoList';
-import {
-  Chart as ChartJS,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarController,
-  Tooltip,
-  Colors,
-  Legend,
-} from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
-ChartJS.register(
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarController,
-  Tooltip,
-  Legend,
-  Colors,
-);
+import RequestChart from '../../components/Charts/RequestChart/RequestChart';
+import CpuChart from '../../components/Charts/CpuChart/CpuChart';
+import ShowChartButton from '../../components/ShowChartButton/ShowChartButton';
+import NetworkChart from '../../components/Charts/NetworkChart/NetworkChart';
 
 const ConnectionIdPage: FC = () => {
-  const [chartVisible, setChartVisible] = useState(false);
+  const [chartsVisible, setChartsVisible] = useState({
+    reqChartVisible: false,
+    cpuChartVisible: false,
+    networkChartVisible: false,
+  });
   const params = useParams();
   const clientInfo: any = socketStore((state) =>
     state.connections.find(
@@ -39,55 +23,32 @@ const ConnectionIdPage: FC = () => {
   );
   return (
     <div className={cl.wrapper}>
-      <button
-        className={cl.showChartButton}
-        onClick={() => setChartVisible(!chartVisible)}
-      >
-        Show chart
-      </button>
-      {chartVisible && (
-        <div>
-          <Bar
-            data={{
-              labels: [
-                'Total request count',
-                'Successful requests',
-                'Error requests',
-              ],
-              datasets: [
-                {
-                  label: 'Requests info',
-                  data: [
-                    clientInfo?.requests?.totalRequestCount || 0,
-                    clientInfo?.requests?.totalSuccessfulRequests || 0,
-                    clientInfo?.requests?.totalErrorRequests || 0,
-                  ],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                  ],
-                  borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
-                  borderWidth: 1,
-                },
-              ],
-            }}
-            options={{
-              plugins: {
-                tooltip: {
-                  enabled: true,
-                  callbacks: {
-                    label: function (context) {
-                      const labelIndex = context.dataIndex;
-                      const value = context.dataset.data[labelIndex];
-                      return `Count: ${value}`;
-                    },
-                  },
-                },
-              },
-            }}
-          />
-        </div>
+      <div className={cl.chartButtonsContainer}>
+        <ShowChartButton
+          text="Show requests chart"
+          chartVisible={chartsVisible.reqChartVisible}
+          setChartsVisible={setChartsVisible}
+          chartType="reqChartVisible"
+        />
+        <ShowChartButton
+          text="Show cpu chart"
+          chartVisible={chartsVisible.cpuChartVisible}
+          setChartsVisible={setChartsVisible}
+          chartType="cpuChartVisible"
+        />
+        <ShowChartButton
+          text="Show network chart"
+          chartVisible={chartsVisible.networkChartVisible}
+          setChartsVisible={setChartsVisible}
+          chartType="networkChartVisible"
+        />
+      </div>
+
+      {chartsVisible.reqChartVisible && (
+        <RequestChart requests={clientInfo?.requests} />
       )}
+      {chartsVisible.cpuChartVisible && <CpuChart socketId={params.id || ''} />}
+      {chartsVisible.networkChartVisible && <NetworkChart />}
       <SystemInfoList title={'System'} objectList={clientInfo?.system} />
       <SystemInfoList title={'Cpu'} objectList={clientInfo?.cpu} />
       <SystemInfoList title={'OS'} objectList={clientInfo?.osInfo} />

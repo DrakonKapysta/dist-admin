@@ -14,22 +14,24 @@ const LogsPage = () => {
   });
   const [removeLog, isLogsRemoving, logsRemoveError] = useFetcthing(
     async (formData: any, selectedDeleteVariant: string) => {
-      const [date, time] = formData.dateAndTime.split(' ');
-      const [endDate, endTime] = formData.dateAndTime.split(' ');
+      let deletedLog = null;
       if (selectedDeleteVariant == 'range') {
-      } else if (selectedDeleteVariant == 'single') {
-        const deletedLog = await LogService.deleteLog(
+        deletedLog = await LogService.deleteManyLogs(
           selectedDeleteVariant,
-          date,
-          time,
+          formData.dateAndTime,
+          formData.endDateAndTime,
         );
         console.log(deletedLog);
-        setLogs((prevLogs: any) => {
-          return prevLogs.filter(
-            (prevLog: any) => prevLog._id != deletedLog._id,
-          );
-        });
+      } else if (selectedDeleteVariant == 'single') {
+        deletedLog = await LogService.deleteLog(
+          selectedDeleteVariant,
+          formData.dateAndTime,
+        );
+        console.log(deletedLog);
       }
+      setLogs((prevLogs: any) => {
+        return prevLogs.filter((prevLog: any) => prevLog._id != deletedLog._id);
+      });
     },
   );
   const loading = isLogsRemoving || isLogsLoading;
@@ -49,7 +51,7 @@ const LogsPage = () => {
       ) : (
         logs.map((log: any) => (
           <p>
-            Time: {log.time} <br /> Date: {log.date} <br /> Log: {log.log}
+            Date: {log.date} <br /> Log: {log.log}
           </p>
         ))
       )}
