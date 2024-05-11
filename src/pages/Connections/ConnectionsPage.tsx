@@ -6,7 +6,11 @@ const Connections = () => {
   const clientConnections = socketStore((state) => state.connections);
   return (
     <div className={cl.wrapper}>
-      <ConnectionList connections={clientConnections} />
+      {Boolean(clientConnections.length > 0) ? (
+        <ConnectionList connections={clientConnections} />
+      ) : (
+        <p>There are no active conncetions</p>
+      )}
     </div>
   );
 };

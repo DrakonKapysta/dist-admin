@@ -8,6 +8,8 @@ import initializeSocket from './features/initalizeSocket';
 import ConnectionsPage from './pages/Connections/ConnectionsPage';
 import ConnectionIdPage from './pages/ConnectionIdPage/ConnectionIdPage';
 import LogsPage from './pages/LogsPage/LogsPage';
+import SettingsPage from './pages/Settings/SettingsPage';
+import StatisticPage from './pages/Statistic/StatisticPage';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,8 @@ const router = createBrowserRouter([
       { path: '/connections', element: <ConnectionsPage /> },
       { path: '/connections/:id', element: <ConnectionIdPage /> },
       { path: '/logs', element: <LogsPage /> },
+      { path: '/settings', element: <SettingsPage /> },
+      { path: '/statistic', element: <StatisticPage /> },
     ],
   },
 ]);

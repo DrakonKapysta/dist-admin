@@ -3,7 +3,7 @@ import cl from './LogsPage.module.css';
 import { socketStore } from '../../stores/socketStore';
 import { useFetcthing } from '../../hooks/useFetching';
 import LogService from '../../API/LogService';
-import LogForm from '../../components/LogForm/LogForm';
+import LogDeleteForm from '../../components/LogDeleteForm/LogDeleteForm';
 
 const LogsPage = () => {
   const [logs, setLogs] = useState<any>([]);
@@ -39,7 +39,13 @@ const LogsPage = () => {
   const searchedLogs = logs.filter((log: any) =>
     log.log.toLowerCase().includes(searchLog.toLowerCase()),
   );
-  console.log(searchedLogs);
+  const sortedAndSearchedLogs = searchedLogs.sort(
+    (firstLog: any, secondLog: any) => {
+      if (firstLog.date > secondLog.date) return 1;
+      else if (firstLog.date < secondLog.date) return -1;
+      return 0;
+    },
+  );
 
   useEffect(() => {
     fetchLogs();
@@ -66,7 +72,7 @@ const LogsPage = () => {
             onChange={(e) => setSearchLog(e.target.value)}
           />
         </div>
-        {isDeleting && <LogForm removeLog={removeLog} />}
+        {isDeleting && <LogDeleteForm removeLog={removeLog} />}
         {logsError && (
           <p style={{ color: 'red' }}>Error loading logs {logsError}</p>
         )}

@@ -43,10 +43,15 @@ const RequestChart = ({ requests }: any) => {
                 requests?.totalErrorRequests || 0,
               ],
               backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
+                'rgba(224, 150, 232, 0.2)',
+                'rgba(0, 255, 132, 0.2)',
+                'rgba(255, 40, 64, 0.2)',
               ],
-              borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
+              borderColor: [
+                'rgba(224, 150, 232)',
+                'rgba(0, 255, 132)',
+                'rgba(255, 40, 64)',
+              ],
               borderWidth: 1,
             },
           ],

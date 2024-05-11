@@ -12,3 +12,6 @@
   font-size: 16px;
   max-width: 200px;
 }
+.deleteVariant {
+  border: 1px solid rgb(255, 0, 0);
+}

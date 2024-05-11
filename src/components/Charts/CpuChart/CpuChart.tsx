@@ -5,10 +5,10 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  BarController,
+  Title,
   Tooltip,
-  Colors,
   Legend,
+  Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import ChartService from '../../../API/ChartService';
@@ -17,25 +17,26 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  BarController,
+  Title,
   Tooltip,
   Legend,
-  Colors,
+  Filler,
 );
+const SECONDS = 30;
 
 const CpuChart = ({ socketId }: { socketId: string }) => {
   const timerRef = useRef<number | undefined | NodeJS.Timeout>(undefined);
-  const [usage, setUsage] = useState([]);
+  const [usage, setUsage] = useState(Array(SECONDS).fill(0));
   useEffect(() => {
     timerRef.current = setInterval(async () => {
       const usage = await ChartService.getCpuUsage(socketId);
       console.log(usage);
 
       setUsage((prev): any => {
-        if (prev.length == 10) {
-          return [...prev.slice(1), usage.currentLoad];
-        }
-        return [...prev, usage.currentLoad];
+        const newData = [...prev];
+        newData.shift(); // Удаляем первый элемент
+        newData.push(usage.currentLoad); // Добавляем новое случайное значение в конец
+        return [...newData];
       });
     }, 2000);
     return () => {
@@ -45,49 +46,52 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
   return (
     <Line
       data={{
-        labels: ['t', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        labels: Array.from({ length: SECONDS }, (_, i) => `${SECONDS - i}`),
         datasets: [
           {
-            label: 'CPU Usage',
-            data: [null, ...usage],
-            borderColor: '#aaaaaa',
-            fill: false,
-            tension: 0.4,
+            label: 'CPU Load (%)',
+            data: usage,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderWidth: 1,
+            fill: true,
+            pointRadius: 0,
+            tension: 0.1,
           },
         ],
       }}
       options={{
+        animation: {
+          duration: 0, // Отключаем анимацию
+        },
         scales: {
           y: {
             beginAtZero: true,
-            max: 100,
+            suggestedMax: 100, // Максимальное значение по оси Y
+          },
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Seconds',
+            },
           },
         },
         plugins: {
-          tooltip: {
-            enabled: true,
-            callbacks: {
-              label: function (context) {
-                const labelIndex = context.dataIndex;
-                const value = context.dataset.data[labelIndex];
-                return `Usage: ${value}%`;
-              },
-              title: function (tooltipItems) {
-                let title = '';
-                tooltipItems.forEach(function (tooltipItem, index) {
-                  const labelValue = tooltipItem.label;
-                  title += `Second: ${labelValue}\n`;
-                });
-                return title.trim();
-              },
-            },
+          title: {
+            display: true,
+            text: 'Real-Time CPU Load',
           },
           legend: {
-            labels: {
-              usePointStyle: true,
-              boxWidth: 11,
-              boxHeight: 11,
-            },
+            position: 'top',
+          },
+          tooltip: {
+            enabled: false, // Отключаем всплывающие подсказки
+          },
+        },
+        elements: {
+          line: {
+            tension: 0.4, // Makes the line chart straight
           },
         },
       }}

@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import cl from './LogForm.module.css';
-import { LogFormCompose } from './LogFormRoot/LogFormRoot';
+import cl from './LogDeleteForm.module.css';
+import { LogFormCompose } from '../LogFormRoot/LogFormRoot';
 import LogService from '../../API/LogService';
 
 interface LogFormProps {
   removeLog: any;
 }
 
-const LogForm: FC<LogFormProps> = ({ removeLog }) => {
+const LogDeleteForm: FC<LogFormProps> = ({ removeLog }) => {
   const [selectedDeleteVariant, setSelectedDeleteVariant] = useState('single');
   const [formData, setFormData] = useState({
     dateAndTime: '',
@@ -46,7 +46,7 @@ const LogForm: FC<LogFormProps> = ({ removeLog }) => {
           name="dateAndTime"
           onChange={handleInputChange}
           value={formData.dateAndTime}
-          className="primitive"
+          className="primitive deleteVariant"
           type="text"
           placeholder={'Date Time'}
         />
@@ -55,7 +55,7 @@ const LogForm: FC<LogFormProps> = ({ removeLog }) => {
             name="endDateAndTime"
             onChange={handleInputChange}
             value={formData.endDateAndTime}
-            className="primitive"
+            className="primitive deleteVariant"
             type="text"
             placeholder={'End-Date End-Time'}
           />
@@ -68,4 +68,4 @@ const LogForm: FC<LogFormProps> = ({ removeLog }) => {
   );
 };
 
-export default LogForm;
+export default LogDeleteForm;

@@ -8,7 +8,7 @@ export default function initializeSocket() {
     updateRequestCount,
   } = socketStore.getState();
   //https://dist-serv.adaptable.app/admin
-  const socket = io('http://localhost:3000/admin');
+  const socket = io('http://194.61.53.65:3000/admin');
   socket.on('connect', () => {
     console.log('admin:connect');
     console.log('Connected');
