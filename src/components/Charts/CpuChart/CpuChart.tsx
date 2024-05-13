@@ -11,7 +11,7 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import ChartService from '../../../API/ChartService';
+import SystemService from '../../../API/SystemService';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -29,7 +29,7 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
   const [usage, setUsage] = useState(Array(SECONDS).fill(0));
   useEffect(() => {
     timerRef.current = setInterval(async () => {
-      const usage = await ChartService.getCpuUsage(socketId);
+      const usage = await SystemService.getCpuUsage(socketId);
       console.log(usage);
 
       setUsage((prev): any => {

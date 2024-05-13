@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  padding: 10px;
+  column-gap: 50px;
+}
+
+.vertical-line {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid rgba(139, 69, 19, 1);
+  height: 100%;
+  padding-left: 10px;
+}
+.vertical-dashed-line {
+  display: inline-block;
+  border-left: 2px dashed rgba(139, 69, 19, 1);
+  height: 100%;
+  padding-left: 10px;
+}
+.dynamicInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.networkValueTitle {
+  color: rgba(86, 85, 85, 0.752);
+}
+.chartContainer {
+}
+.transferredValue {
+}
+.receivedValue {
+}
+.networkStatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.chartWrapper {
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+  -moz-box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+  box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+}
+.networkAdvanceStatsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.networkAdvanceStatsContainer {
+  display: flex;
+  gap: 10px;
+}
+.networkAdvanceStatsContainer .networkValueTitle {
+  display: block;
+  width: 100%;
+}
+.interface {
+}
