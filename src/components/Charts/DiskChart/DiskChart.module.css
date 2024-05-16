@@ -1,0 +1,45 @@
+.chartWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+  -moz-box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+  box-shadow: 1px 1px 12px -3px rgba(147, 147, 147, 0.5) inset;
+  gap: 10px;
+  width: 100%;
+}
+.pieChart {
+  max-width: 300px;
+  max-height: 300px;
+}
+.vertical-line {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid rgb(60, 216, 16);
+  height: 100%;
+  padding-left: 10px;
+}
+.vertical-dashed-line {
+  display: inline-block;
+  border-left: 2px dashed rgb(60, 216, 16);
+  height: 100%;
+  padding-left: 10px;
+}
+.dynamicInfoContainer {
+  display: flex;
+  gap: 20px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+.diskValueTitle {
+  color: rgba(86, 85, 85, 0.752);
+}
+.diskStatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

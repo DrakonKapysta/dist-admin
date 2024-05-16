@@ -5,12 +5,18 @@ import SystemService from '../../API/SystemService';
 import { serverSystemInfoStore } from '../../stores/serverSystemInfoStore';
 import { produce } from 'immer';
 import cl from './StatisticPage.module.css';
+import DiskChart from '../../components/Charts/DiskChart/DiskChart';
+import MemoryChart from '../../components/Charts/MemoryChart/MemoryChart';
 
 const StatisticPage = () => {
   return (
     <div className={cl.wrapper}>
-      <div style={{ paddingRight: 10 }}>
+      <div className={cl.chartsContainer}>
         <NetworkChart />
+        <div className={cl.chartGroup}>
+          <DiskChart />
+          <MemoryChart />
+        </div>
       </div>
     </div>
   );

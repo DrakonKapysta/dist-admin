@@ -24,4 +24,20 @@ export default class SystemService {
     }
     return [];
   }
+  static async getServerDiskMetrics() {
+    const response = await fetch(`http://194.61.53.65:3000/system/server-disk`);
+    if (response.ok) {
+      return await response.json();
+    }
+    return [];
+  }
+  static async getServerMemoryMetrics() {
+    const response = await fetch(
+      `http://194.61.53.65:3000/system/server-memory`,
+    );
+    if (response.ok) {
+      return await response.json();
+    }
+    return [];
+  }
 }

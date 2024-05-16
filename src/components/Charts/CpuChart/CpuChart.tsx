@@ -35,7 +35,7 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
       setUsage((prev): any => {
         const newData = [...prev];
         newData.shift(); // Удаляем первый элемент
-        newData.push(usage.currentLoad); // Добавляем новое случайное значение в конец
+        newData.push(usage); // Добавляем новое случайное значение в конец
         return [...newData];
       });
     }, 2000);
@@ -50,7 +50,7 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
         datasets: [
           {
             label: 'CPU Load (%)',
-            data: usage,
+            data: usage.map((load: any) => load.currentLoad),
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
             borderWidth: 1,
