@@ -87,7 +87,7 @@ const LogsPage = () => {
         <div className={cl.logsContainer}>
           {Boolean(searchedLogs.length) ? (
             searchedLogs.map((log: any) => (
-              <p>
+              <p key={log._id}>
                 Date: {log.date} <br /> Log: {log.log}
               </p>
             ))

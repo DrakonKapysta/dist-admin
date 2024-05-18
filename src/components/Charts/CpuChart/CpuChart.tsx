@@ -34,8 +34,8 @@ const CpuChart = ({ socketId }: { socketId: string }) => {
 
       setUsage((prev): any => {
         const newData = [...prev];
-        newData.shift(); // Удаляем первый элемент
-        newData.push(usage); // Добавляем новое случайное значение в конец
+        newData.shift();
+        newData.push(usage);
         return [...newData];
       });
     }, 2000);

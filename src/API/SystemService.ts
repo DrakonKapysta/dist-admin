@@ -1,7 +1,16 @@
 export default class SystemService {
-  static async getCpuUsage(socketId: string) {
+  static async getCpuUsage(socketId: string, server = false) {
+    if (!server) {
+      const response = await fetch(
+        `http://194.61.53.65:3000/system/cpu-usage?socketId=${socketId}`,
+      );
+      if (response.ok) {
+        return await response.json();
+      }
+      return [];
+    }
     const response = await fetch(
-      `http://194.61.53.65:3000/system/cpu-usage?socketId=${socketId}`,
+      `http://194.61.53.65:3000/system/server/cpu-usage`,
     );
     if (response.ok) {
       return await response.json();

@@ -109,7 +109,7 @@ const NetworkChart = () => {
                 position: 'top',
               },
               tooltip: {
-                enabled: false, // Отключаем всплывающие подсказки
+                enabled: false,
               },
             },
             elements: {
@@ -125,21 +125,21 @@ const NetworkChart = () => {
         <div className={cl.dynamicInfoContainer}>
           <div className={cl['vertical-line']}>
             <div className={cl.networkStatContainer}>
-              <span className={cl.networkValueTitle}>Transferred</span>
-              <span className={cl.transferredValue}>
-                {transferred.current < 1
-                  ? (transferred.current * 1024).toFixed(1) + ' KBit/s'
-                  : transferred.current.toFixed(1) + ' Mbit/s'}
-              </span>
-            </div>
-          </div>
-          <div className={cl['vertical-dashed-line']}>
-            <div className={cl.networkStatContainer}>
               <span className={cl.networkValueTitle}>Received</span>
               <span className={cl.receivedValue}>
                 {received.current < 1
                   ? (received.current * 1024).toFixed(1) + ' KBit/s'
                   : received.current.toFixed(1) + ' Mbit/s'}
+              </span>
+            </div>
+          </div>
+          <div className={cl['vertical-dashed-line']}>
+            <div className={cl.networkStatContainer}>
+              <span className={cl.networkValueTitle}>Transferred</span>
+              <span className={cl.transferredValue}>
+                {transferred.current < 1
+                  ? (transferred.current * 1024).toFixed(1) + ' KBit/s'
+                  : transferred.current.toFixed(1) + ' Mbit/s'}
               </span>
             </div>
           </div>
